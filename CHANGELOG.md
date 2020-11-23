@@ -5,12 +5,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- ScheduledTask
+  - Fixed issue with disabling scheduled tasks that have "Run whether user is
+    logged on or not" configured - Fixes [Issue #306](https://github.com/dsccommunity/ComputerManagementDsc/issues/306).
+
+## [8.4.0] - 2020-08-03
+
+### Changed
+
+- ComputerManagementDsc
+  - Automatically publish documentation to GitHub Wiki - Fixes [Issue #342](https://github.com/dsccommunity/ComputerManagementDsc/issues/342).
+
+## [8.3.0] - 2020-06-30
+
+### Changed
+
 - ComputerManagementDsc
   - Updated to use the common module _DscResource.Common_ - Fixes [Issue #327](https://github.com/dsccommunity/ComputerManagementDsc/issues/327).
   - Fixed build failures caused by changes in `ModuleBuilder` module v1.7.0
     by changing `CopyDirectories` to `CopyPaths` - Fixes [Issue #332](https://github.com/dsccommunity/ComputerManagementDsc/issues/332).
   - Pin `Pester` module to 4.10.1 because Pester 5.0 is missing code
     coverage - Fixes [Issue #336](https://github.com/dsccommunity/ComputerManagementDsc/issues/336).
+- ScheduledTask
+  - Add "StopExisting" to valid values for MultipleInstances parameter - Fixes [Issue #333](https://github.com/dsccommunity/ComputerManagementDsc/issues/333).
+
+### Fixed
+
+- ComputerManagementDsc
+  - Improved integration test reliability by resetting the DSC LCM
+    before executing each test using the `Reset-DscLcm` function - Fixes [Issue #329](https://github.com/dsccommunity/ComputerManagementDsc/issues/329).
+  - Split integration test MOF compilation out of application to standardize
+    pattern and make it easier to determine cause of failure.
 
 ## [8.2.0] - 2020-05-05
 
