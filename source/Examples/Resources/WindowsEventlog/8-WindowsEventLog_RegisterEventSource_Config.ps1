@@ -1,11 +1,11 @@
 <#PSScriptInfo
 .VERSION 1.0.0
-.GUID 1d426e51-df3b-4723-96ac-e7d790744f69
+.GUID 857f9f25-082e-4274-9efd-0908f49bb516
 .AUTHOR DSC Community
 .COMPANYNAME DSC Community
 .COPYRIGHT Copyright the DSC Community contributors. All rights reserved.
 .TAGS DSCConfiguration
-.LICENSEURI https://github.com/dsccommunity/ComputerManagementDsc/blob/master/LICENSE
+.LICENSEURI https://github.com/dsccommunity/ComputerManagementDsc/blob/main/LICENSE
 .PROJECTURI https://github.com/dsccommunity/ComputerManagementDsc
 .ICONURI
 .EXTERNALMODULEDEPENDENCIES
@@ -19,18 +19,19 @@
 
 <#
     .DESCRIPTION
-        Example script that disables the given Windows Event Log.
+        Example script that registers MyEventSource as an event
+        source on the Application log.
 #>
-Configuration WindowsEventlog_DisableWindowsEventlog_Config
+Configuration WindowsEventLog_RegisterEventSource_Config
 {
     Import-DSCResource -ModuleName ComputerManagementDsc
 
     Node localhost
     {
-        WindowsEventLog Enable-DscAnalytic
+        WindowsEventLog Application
         {
-            LogName             = 'Microsoft-Windows-Dsc/Analytic'
-            IsEnabled           = $false
-        } # End of Windows Event Log Resource
-    } # End of Node
-} # End of Configuration
+            LogName           = 'Application'
+            RegisteredSource  = 'MyEventSource'
+        }
+    }
+}

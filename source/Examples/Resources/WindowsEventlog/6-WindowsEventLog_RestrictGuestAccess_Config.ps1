@@ -1,6 +1,6 @@
 <#PSScriptInfo
 .VERSION 1.0.0
-.GUID f177571b-c54b-46f2-9d55-903b794ecccd
+.GUID ab5cc60b-b834-49b0-80f4-f73f18bf9199
 .AUTHOR DSC Community
 .COMPANYNAME DSC Community
 .COPYRIGHT Copyright the DSC Community contributors. All rights reserved.
@@ -19,21 +19,19 @@
 
 <#
     .DESCRIPTION
-        This configuration will enable Remote Desktop for Administration and set
-        the User Authentication to secure, i.e. to require Network Level Authentication
+        Example script that prohibits guests from accessing
+        the System event log.
 #>
-
-Configuration RemoteDesktopAdmin_SetSecureRemoteDesktopAdmin_Config
+Configuration WindowsEventLog_RestrictGuestAccess_Config
 {
-    Import-DscResource -Module ComputerManagementDsc
+    Import-DSCResource -ModuleName ComputerManagementDsc
 
-    Node ('localhost')
+    Node localhost
     {
-        RemoteDesktopAdmin RemoteDesktopSettings
+        WindowsEventLog System
         {
-            IsSingleInstance   = 'yes'
-            Ensure             = 'Present'
-            UserAuthentication = 'Secure'
+            LogName             = 'System'
+            RestrictGuestAccess = $true
         }
     }
 }

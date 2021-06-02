@@ -1,6 +1,6 @@
 <#PSScriptInfo
 .VERSION 1.0.0
-.GUID d39a7d09-4baa-44d2-bcb4-b37ae3f2e16b
+.GUID 369d465e-244c-4789-90a6-6f3387e4c85a
 .AUTHOR DSC Community
 .COMPANYNAME DSC Community
 .COPYRIGHT Copyright the DSC Community contributors. All rights reserved.
@@ -19,19 +19,23 @@
 
 <#
     .DESCRIPTION
-        This example sets the current time zone on the node
-        to 'Tonga Standard Time'.
+        Example script that adds the Windows Capability OpenSSH.Client~~~~0.0.1.0
+        and set the LogLevel to log Errors only and write the Logfile to Path C:\Temp.
+        This also uses the Source path for the installation.
 #>
-Configuration TimeZone_SetTimeZone_Config
+Configuration WindowsCapability_AddWindowsCapabilitywithLogLevelLogPathandSource_Config
 {
     Import-DSCResource -ModuleName ComputerManagementDsc
 
     Node localhost
     {
-        TimeZone TimeZoneExample
+        WindowsCapability OpenSSHClient
         {
-            IsSingleInstance = 'Yes'
-            TimeZone         = 'Tonga Standard Time'
+            Name     = 'OpenSSH.Client~~~~0.0.1.0'
+            Ensure   = 'Present'
+            LogLevel = 'Errors'
+            LogPath  = 'C:\Temp\Logfile.log'
+            Source   = 'F:\Source\FOD\LanguagesAndOptionalFeatures'
         }
     }
 }

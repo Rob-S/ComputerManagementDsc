@@ -1,6 +1,6 @@
 <#PSScriptInfo
 .VERSION 1.0.0
-.GUID f177571b-c54b-46f2-9d55-903b794ecccd
+.GUID 1d426e51-df3b-4723-96ac-e7d790744f69
 .AUTHOR DSC Community
 .COMPANYNAME DSC Community
 .COPYRIGHT Copyright the DSC Community contributors. All rights reserved.
@@ -19,21 +19,18 @@
 
 <#
     .DESCRIPTION
-        This configuration will enable Remote Desktop for Administration and set
-        the User Authentication to secure, i.e. to require Network Level Authentication
+        Example script that disables the DSC Analytic log.
 #>
-
-Configuration RemoteDesktopAdmin_SetSecureRemoteDesktopAdmin_Config
+Configuration WindowsEventLog_DisableWindowsEventLog_Config
 {
-    Import-DscResource -Module ComputerManagementDsc
+    Import-DSCResource -ModuleName ComputerManagementDsc
 
-    Node ('localhost')
+    Node localhost
     {
-        RemoteDesktopAdmin RemoteDesktopSettings
+        WindowsEventLog DscAnalytic
         {
-            IsSingleInstance   = 'yes'
-            Ensure             = 'Present'
-            UserAuthentication = 'Secure'
+            LogName   = 'Microsoft-Windows-Dsc/Analytic'
+            IsEnabled = $false
         }
     }
 }

@@ -5,13 +5,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- WindowsEventLog
+  - Added support to restrict guest access - Fixes [Issue #338](https://github.com/dsccommunity/ComputerManagementDsc/issues/338).
+  - Added support to create custom event sources and optionally register
+    resource files - Fixes [Issue #355](https://github.com/dsccommunity/ComputerManagementDsc/issues/355).
+- WindowsCapability
+  - Added the 'Source' parameter for Add-WindowsCapability as an
+    optional parameter - Fixes [Issue #361](https://github.com/dsccommunity/ComputerManagementDsc/issues/361)
+
+### Changed
+
+- WindowsEventLog
+  - Reformatted code to better align with current DSCResources coding standards.
+- Renamed `master` branch to `main` - Fixes [Issue #348](https://github.com/dsccommunity/ComputerManagementDsc/issues/348).
+- Added support for publishing code coverage to `CodeCov.io` and
+  Azure Pipelines - Fixes [Issue #367](https://github.com/dsccommunity/ComputerManagementDsc/issues/367).
+- Updated build to use `Sampler.GitHubTasks` - Fixes [Issue #365](https://github.com/dsccommunity/ComputerManagementDsc/issues/365).
+- Corrected case of module publish tasks - Fixes [Issue #368](https://github.com/dsccommunity/ComputerManagementDsc/issues/368).
+- Corrected code coverage badge in `README.md`.
+- Updated build pipeline tasks and remove unused environment variables.
+- Removed duplicate code coverage badge.
+
 ### Fixed
 
+- WindowsEventLog
+  - Fixed issue requiring IsEnabled to be declared and set to $true in order
+    to set the MaximumSizeInBytes property - Fixes [Issue #349](https://github.com/dsccommunity/ComputerManagementDsc/issues/349).
+  - Fixed issue where configuring log retention on a non-classic event log will
+    throw.
 - ScheduledTask
   - Fixed issue with disabling scheduled tasks that have "Run whether user is
     logged on or not" configured - Fixes [Issue #306](https://github.com/dsccommunity/ComputerManagementDsc/issues/306).
   - Fixed issue with `ExecuteAsCredential` not returning fully qualified username
-    on newer versions of Windows 10 and Windows Server 2019 - Fixes [Issue #352](https://github.com/dsccommunity/ComputerManagementDsc/issues/352).
+    on newer versions of Windows 10 and Windows Server 2019 for both local
+    accounts and domain accounts - Fixes [Issue #352](https://github.com/dsccommunity/ComputerManagementDsc/issues/352).
   - Fixed issue with `StartTime` failing Test-Resource if not specified in the
     resource - Fixes [Issue #148](https://github.com/dsccommunity/ComputerManagementDsc/issues/148).
 - PendingReboot

@@ -5,7 +5,7 @@
 .COMPANYNAME DSC Community
 .COPYRIGHT Copyright the DSC Community contributors. All rights reserved.
 .TAGS DSCConfiguration
-.LICENSEURI https://github.com/dsccommunity/ComputerManagementDsc/blob/master/LICENSE
+.LICENSEURI https://github.com/dsccommunity/ComputerManagementDsc/blob/main/LICENSE
 .PROJECTURI https://github.com/dsccommunity/ComputerManagementDsc
 .ICONURI
 .EXTERNALMODULEDEPENDENCIES
@@ -19,21 +19,21 @@
 
 <#
     .DESCRIPTION
-        Example script that sets the application Windows Event Log
-        to a maximum size 4096MB, the logmode to 'Circular' and ensure that it is enabled.
+        Sets the Application log to a maximum size of 4096MB,
+        the log mode to circular, and ensure it is enabled.
 #>
-Configuration WindowsEventlog_SetWindowsEventlogSize_Config
+Configuration WindowsEventLog_SetLogSize_Config
 {
     Import-DSCResource -ModuleName ComputerManagementDsc
 
     Node localhost
     {
-        WindowsEventLog ApplicationEventlogSize
+        WindowsEventLog Application
         {
             LogName            = 'Application'
             IsEnabled          = $true
             LogMode            = 'Circular'
-            MaximumSizeInBytes = 4096KB
-        } # End of Windows Event Log Resource
-    } # End of Node
-} # End of Configuration
+            MaximumSizeInBytes = 4096MB
+        }
+    }
+}
